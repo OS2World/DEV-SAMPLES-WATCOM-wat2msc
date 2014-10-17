@@ -1,0 +1,24 @@
+!define BLANK ""
+c:\wat2msc\wat2msc.obj : c:\wat2msc\wat2msc.c .AUTODEPEND
+ @c:
+ cd c:\wat2msc
+ *wcc386 wat2msc.c -i=C:\WATCOM\h;C:\WATCOM\h\os2 -w4 -e25 -zq -otexan -d2 -&
+mf -5r -bt=os2
+
+c:\wat2msc\wat2msc.exe : c:\wat2msc\wat2msc.obj c:\wat2msc\wat2msc.h .AUTODE&
+PEND
+ @c:
+ cd c:\wat2msc
+ @%write wat2msc.lk1 NAME wat2msc
+ @%append wat2msc.lk1 FIL wat2msc.obj
+ @%append wat2msc.lk1 
+!ifneq BLANK ""
+ *wlib -q -n -b wat2msc.imp 
+ @%append wat2msc.lk1 LIBR wat2msc.imp
+!endif
+ *wlink SYS os2v2 op m d all op st=16384 op maxe=25 op q op symf @wat2msc.lk&
+1
+!ifneq BLANK ""
+ rc -i $[: -i C:\WATCOM\h -i C:\WATCOM\h\os2  wat2msc.exe
+!endif
+

@@ -1,0 +1,76 @@
+ 
+
+                                                                       PAGE   1
+                                                                       10-18-95
+                                                                       10:36:39
+
+ Line#  Source Line                       Microsoft C Compiler Version 6.00A   
+
+      1 #define INCL_BASE
+      2 #define INCL_DOS
+      3 #include <os2.h>
+      4 
+      5 #include <stdio.h>
+      6 #include <stdlib.h>
+      7 #include <string.h>
+      8 
+      9 unsigned pascal far testproc(int far*, char far*, int far*, int far*);
+     10 
+     11 unsigned pascal far testproc(int far *func, char far *datastr, 
+     12                              int far *dlen, int far *retc)
+     13 {
+     14     int  cchString=0;
+     15     char szParams[81];
+     16 
+     17     /* generate a string based on the variables passed */
+     18     sprintf(szParams, "p1 = %d, p2 = %.40s, p3 = %d, p4 = %d", 
+     19                       *func, datastr, *dlen, *retc);
+     20 
+     21     /* get the string length */
+     22     cchString = strlen(szParams);
+     23 
+     24     /* display the generated string */
+     25     printf("MSC16 sez:\n%s\n\n", szParams);
+     26 
+     27     /* store string count back into the 32 bit variable */
+     28     *retc = cchString;
+     29 
+     30     /* return the string count the normal way */
+     31     return(cchString);
+     32 }
+
+
+testproc  Local Symbols
+
+Name                      Class   Type              Size   Offset  Register
+
+cchString . . . . . . . . auto                             -0054 
+szParams. . . . . . . . . auto                             -0052 
+retc. . . . . . . . . . . param                             0006
+dlen. . . . . . . . . . . param                             000a
+datastr . . . . . . . . . param                             000e
+func. . . . . . . . . . . param                             0012
+
+
+Global Symbols
+
+Name                      Class   Type              Size   Offset  
+
+printf. . . . . . . . . . extern  far function       ***     ***
+sprintf . . . . . . . . . extern  far function       ***     ***
+strlen. . . . . . . . . . extern  far function       ***     ***
+testproc. . . . . . . . . global  far function       ***    0000
+
+Code size = 006a (106)
+ 
+
+                                                                       PAGE   2
+                                                                       10-18-95
+                                                                       10:36:39
+
+                                          Microsoft C Compiler Version 6.00A   
+
+Data size = 0036 (54)
+Bss size  = 0000 (0)
+
+No errors detected

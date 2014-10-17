@@ -1,0 +1,8 @@
+LIBRARY      MSC16
+DESCRIPTION 'Sample MSC generated 16 bit dll'
+
+PROTMODE
+CODE     LOADONCALL
+
+EXPORTS
+	TESTPROC @1	
